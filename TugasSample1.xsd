@@ -1,0 +1,61 @@
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="www.contoso.com"
+	xmlns:PO="www.contoso.com">
+	
+	<xsd:element name="PurchaseOrders" type="PO:PurchaseOrdersType"/>
+	
+	<xsd:complexType name="PurchaseOrdersType">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="PurchaseOrder" type="PO:PurchaseOrderType"/>
+		</xsd:sequence>
+		<xsd:attribute name="Type" type="xsd:string"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="PurchaseOrderType">
+		<xsd:sequence minOccurs="2" maxOccurs="2">
+			<xsd:element name="Address" type="PO:AddressType"/>
+		</xsd:sequence>
+		<xsd:all>
+			<xsd:element name="DeliveryNotes" type="xsd:String"/>
+			<xsd:element name="Items" type="PO:ItemsType"/>
+			<xsd:element name="ShipDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+		<xsd:attribute name="PurchaseOrderNumber" type="xsd:integer"/>
+		<xsd:attribute name="OrderDate" type="xsd:date"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AddressType">
+		<xsd:all>
+			<xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Street" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Zip" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Country" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+		<xsd:attribute name="Type">
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="shipping"/>
+				<xsd:enumeration value="billing"/>
+			</xsd:restriction>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ItemsType">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="Item" type="PO:ItemType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ItemType">
+		<xsd:all>
+			<xsd:element name="ProductName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Quantity" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="USPrice" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Comment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	
+</xsd:schema>	
+
+<!--  -->

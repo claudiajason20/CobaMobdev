@@ -1,0 +1,58 @@
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.contoso.com"
+	xmlns="http://www.vni.com/products/jmsl/2.0" 
+	version="2.0"
+	xmlns:MC="http://www.vni.com/products/jmsl/2.0">
+	
+	<xsd:element name="MultiCharts" type="MC:MultiChartsType"/>
+	
+	<xsd:complexType name="MultiChartsType">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="Chart" type="ChartType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ChartType">
+		<xsd:all>
+			<xsd:element name="attribute" Type="attributeType" minOccurs="0"/>
+			<xsd:element name="ChartTitle" Type="ChartTitleType"/>
+			<xsd:element name="AxisXY" Type="AxisXYType"/>
+		</xsd:all>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ChartTitleType">
+		<xsd:sequence>
+			<xsd:element name="Attribute" Type="attributeType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="attributeType">
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="value" type="xsd:string"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AxisXYType">
+		<xsd:sequence>
+			<xsd:element name="AxisX" Type="AxisType" minOccurs="0"/>
+			<xsd:element name="AxisY" Type="AxisType" minOccurs="0"/>
+			<xsd:element name="Data" Type="DataType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="DataType">
+		<xsd:sequence>
+			<xsd:element name="attribute" type="attributeType"/>
+		</xsd:sequence>
+		<xsd:attribute name="x" Type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		<xsd:attribute name="y" Type="xsd:string" minOccurs="1" maxOccurs="1"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AxisType">
+		<xsd:sequence>
+			<xsd:element name="attribute" type="attributeType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>
+	
